@@ -28,8 +28,17 @@ describe('My first Test Suit', ()=>{
         const textVeg1 = veg1.find('h4.product-name').text()
 
         if (textVeg1 === 'Capsicum') {
-          veg1.find('button').click()  
+        //   veg1.find('button').click()  
+        veg1.then(()=>{
+            cy.contains('ADD TO CART').click()
+        })
         } 
+    })
+
+    //Promises with then() method
+
+    cy.get('.brand').then((brandlogo)=>{
+        cy.log(brandlogo.text())
     })
 
 })

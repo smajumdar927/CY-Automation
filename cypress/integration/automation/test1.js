@@ -17,11 +17,28 @@ describe('My first Test Suit', ()=>{
     
     cy.get('.products').find('.product').each((veg)=>{
         const textVeg =veg.find('h4.product-name').text()
-        if (textVeg.includes('Cashews')) {
+        if (textVeg.includes('Cashews'))
+         {
         veg.find('button').click()
     }
-        
-    
+
+    })
+
+    cy.get('.products').find('.product').each((veg1, index, $list)=>{
+        const textVeg1 = veg1.find('h4.product-name').text()
+
+        if (textVeg1 === 'Capsicum') {
+        //   veg1.find('button').click()  
+        veg1.then(()=>{
+            cy.contains('ADD TO CART').click()
+        })
+        } 
+    })
+
+    //Promises with then() method
+
+    cy.get('.brand').then((brandlogo)=>{
+        cy.log(brandlogo.text())
     })
 
 })

@@ -6,14 +6,10 @@ describe('My first Test Suit', ()=>{
     it('Navigate to URL', ()=>{
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
         cy.get('.search-keyword').type('ca')
-        //here .classname and visible to collect visible object
-        cy.get('.product:visible').should('have.length', 4)
+       
         //Parent Child chaining
         cy.get('.products').as('productLocator') // .as('locator name') use as alias
-        cy.get('@productLocator').find('.product').should('have.length', 4)
-        //eq() helps to identify the desired index, then contains(text) helps to verify the text
-        cy.get('@productLocator').find('.product').eq(1).contains('ADD TO CART').click()
-     
+          
     //Grabbing text for validation
     
     cy.get('@productLocator').find('.product').each((veg)=>{
@@ -33,15 +29,10 @@ describe('My first Test Suit', ()=>{
         } 
     })
 
-    //Promises with then() method
+    cy.get('.cart-icon').click()
+    cy.contains('PROCEED TO CHECKOUT').click()
+    cy.contains('Place Order').click()
 
-    cy.get('.brand').then((brandlogo)=>{
-        cy.log(brandlogo.text())
-    })
-
-    //Handleing Async Promises
-    // Assert if logo text is correctly displayed
-    cy.get('.brand').should('have.text', 'GREENKART')
 
 })
 })
